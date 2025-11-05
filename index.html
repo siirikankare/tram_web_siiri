@@ -294,6 +294,10 @@
         }
         abstract.addTo(map);
 		abstract.show();
+
+		map.on('click', function() {
+            abstract.hide();
+        });
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
