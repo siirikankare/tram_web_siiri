@@ -31,31 +31,44 @@
 		style="position:absolute; top:125px; left:10px; 
                 background:white; padding:10px; max-height:300px; 
                 overflow:auto; z-index:1000; border:1px solid #ccc;">
+		>/div>
+
+		<!-- Valintapaneeli -->
+        <div id="selection-panel"
+            style="position:absolute; bottom:25px; right:10px; z-index:1000;
+                	background:white; border:1px solid #ccc; border-radius:8px;
+                    box-shadow:0 2px 8px rgba(0,0,0,0.2); padding:10px; width:220px;">
 				
 		<!-- Etäisyydenvalinta -->
-		</div>
-		 <select id="distance-select" 
-            style="position:absolute; top:320px; right:10px; z-index:1000;
-			font-size:16px; padding:6px 10px; border-radius:6px;
-			background:white; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
-			<option value="5min">5 min</option>
-			<option value="10min">10 min</option>
-			<option value="15min">15 min</option>
-		</select>
+        <label for="distance-select"
+                style="display:block; font-weight:bold; margin-bottom:4px;">
+                Select distance:
+        </label>
+        <select id="distance-select"
+                style="width:100%; font-size:15px; padding:6px 8px;
+                        border-radius:6px; border:1px solid #ccc; margin-bottom:10px;">
+            <option value="5min">5 min</option>
+            <option value="10min">10 min</option>
+            <option value="15min">15 min</option>
+        </select>
 			
 		<!-- Palvelutyypin valinta -->
-		<select id="filter-container"
-		style="position:absolute; top:370px; right:10px; z-index:1000;
-                   font-size:16px; padding:6px 10px; border-radius:6px;
-                   background:white; border:1px solid #ccc; box-shadow:0 2px 5px rgba(0,0,0,0.2);">
-		<option value="Kaikki">Kaikki</option>
-        <option value="Elokuvateatterit">Elokuvateatterit</option>
-        <option value="Hostellit">Hostellit</option>
-        <option value="Hotellit">Hotellit</option>
-        <option value="Museot">Museot</option>
-        <option value="Ravitsemusliikkeet">Ravitsemusliikkeet</option>
-        <option value="Teatterit">Teatterit</option>
-			</select>
+        <label for="filter-container"
+                style="display:block; font-weight:bold; margin-bottom:4px;">
+                Select service type:
+        </label>
+        <select id="filter-container"
+                style="width:100%; font-size:15px; padding:6px 8px;
+                        border-radius:6px; border:1px solid #ccc;">
+            <option value="Kaikki">All services</option>
+            <option value="Elokuvateatterit">Elokuvateatterit</option>
+            <option value="Hostellit">Hostellit</option>
+            <option value="Hotellit">Hotellit</option>
+            <option value="Museot">Museot</option>
+            <option value="Ravitsemusliikkeet">Ravitsemusliikkeet</option>
+            <option value="Teatterit">Teatterit</option>
+        </select>
+        </div>
 			
 		
         <script src="js/qgis2web_expressions.js"></script>
