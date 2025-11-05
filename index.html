@@ -293,6 +293,7 @@
                 this._div.innerHTML = '<br>This interactive web map shows how accessible the services are from the tramstops. You can choose from the dropdown menu on the right if you want to see services within 5-, 10-, or 15-minute walking distance from the chosen tramstop. The walking distances are calculated with 4 kilometers per hour speed. You can also choose if you want to see all services or just hotels or any other kind of services. By clicking any tramstop there will pop-up a list about services around the stop by your selected walking distance. The map will also show you in points where your selected services are. By clicking these points you can get more information about the service. <br /><br />Data Citations: Service point data from Lounaistieto. Available at: https://www.avoindata.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet. Digiroads from Finnish Transport Infrastructure Agency. Available at: https://vayla.fi/vaylista/aineistot/digiroad/aineisto/rajapinnat. Tramway and its stops raitiotielinjaus.shp and raitiotielinjaus_pysäkit.shp from Turku city. Available at: https://www.avoindata.fi/data/fi/dataset/turun-raitiotiesuunnitelma. Background map © OpenStreetMap. Available at: https://www.openstreetmap.org. <br/>';
         }
         abstract.addTo(map);
+		abstract.show();
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
