@@ -10,7 +10,9 @@ The map is available at: https://wilma-p.github.io/tram_web/#13/60.4466/22.3050
 Datasets:
 We have used OpenStreetMap as background map. 
 Two datasets about the tramway: raitiotielinjaus.shp (line) CRS: EPSG:3877 - EUREF-FIN and raitiotielinjaus_pysäkit.shp. (polygon) CRS: EPSG:3877 - EUREF-FIN. The data administrator is Turku. Those datasets are available in https://data.turku.fi and those have been updated in 16.12.2024. Datasets are available in Open data via a WFS interface. Licence: Creative Commons Attribution 4.0 International License. 
+
 The service point data: matkailu_ravintola_ja_kulttuuripalvelut.fid-252923a2_19a68eea4f4_-5f3 (point) CRS: ETRS-TM35FIN (EPSG:3067). The data administrator is Varsinais-Suomen liitto. It is available in https://Avoindata.fi and it has been updated in 8.10.2025. Dataset is available in Open data via WMS and WFS interface. Licence: Creative Commons Attribution 4.0 International License. 
+
 The digiroad data: digiroad (line) CRS: ETRS-TM35FIN. The data administrator is Väylävirasto. the dataset is available in https://vayla.fi/digiroad and it has been updated in 19.6.2025. Dataset is available in Open data via WMS and WFS interface. Licence: Creative Commons Attribution 4.0 International License. 
 
 Authors: Kari Hillgén, Siiri Kankare, Wilma Peippo & Veera Tuomola.
