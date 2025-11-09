@@ -10,7 +10,7 @@ The map is available at: https://wilma-p.github.io/tram_web/#13/60.4466/22.3050
 
 Datasets:
 
-We have used OpenStreetMap as background map.
+We have used OpenStreetMap as background map. Licence: Open Database License. 
 
 Two datasets about the tramway: raitiotielinjaus.shp (line) CRS: EPSG:3877 - EUREF-FIN and raitiotielinjaus_pysäkit.shp. (polygon) CRS: EPSG:3877 - EUREF-FIN. The data administrator is Turku. Those datasets are available in https://data.turku.fi and those have been updated in 16.12.2024. Datasets are available in Open data via a WFS interface. Licence: Creative Commons Attribution 4.0 International License. 
 
