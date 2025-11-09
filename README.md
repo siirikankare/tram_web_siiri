@@ -1,5 +1,5 @@
   The Turku tramway: Accessibility of services​
-- Tourism, restaurants and cultural services -
+- Tourism, restaurants and cultural services 
 
 The inteactive web map is about the planned Turku tramway and the map is focusing on tourism, restaurants and cultural services in Turku. The map helps to understand how the tramway affects the accessibility of services and supports sustainable mobility and urban planning. The map is for citizens needs and it helps to search different services near the tramstops. From each tramstop you can choose 5-, 10- or 15-minute walking distance and see how many and what types of services are included in each area. When user clicks any tramstop there will pop-up a list about the services that are within the selected walking distance.
 
