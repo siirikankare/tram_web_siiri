@@ -11,13 +11,14 @@
         <link rel="stylesheet" href="css/qgis2web.css">
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
-        <style>
-        html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
+          <style>
+    html, body, #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+	
         </style>
         <title></title>
 	    </head>
@@ -28,21 +29,21 @@
 	
 		<!-- Palvelulista -->
 		<div id="service-list"
-		style="position:absolute; top:125px; left:10px; 
-                background:white; padding:10px; max-height:300px; 
+		style="position:absolute; top:20px; left:10px; 
+                background:rgb(247, 220, 110);; padding:10px; max-height:300px; 
                 overflow:auto; z-index:1000; border:1px solid #ccc;">
 		</div>
 
 		<!-- Valintapaneeli -->
         <div id="selection-panel"
             style="position:absolute; bottom:25px; right:10px; z-index:1000;
-                	background:white; border:1px solid #ccc; border-radius:8px;
+                	background:rgb(247, 220, 110);; border:1px solid #ccc; border-radius:8px;
                     box-shadow:0 2px 8px rgba(0,0,0,0.2); padding:10px; width:220px;">
 				
 		<!-- Etäisyydenvalinta -->
         <label for="distance-select"
                 style="display:block; font-weight:bold; margin-bottom:4px;">
-                Select distance:
+                Select walking distance:
         </label>
         <select id="distance-select"
                 style="width:100%; font-size:15px; padding:6px 8px;
@@ -61,12 +62,13 @@
                 style="width:100%; font-size:15px; padding:6px 8px;
                         border-radius:6px; border:1px solid #ccc;">
             <option value="Kaikki">All services</option>
-            <option value="Elokuvateatterit">Elokuvateatterit</option>
-            <option value="Hostellit">Hostellit</option>
-            <option value="Hotellit">Hotellit</option>
-            <option value="Museot">Museot</option>
-            <option value="Ravitsemusliikkeet">Ravitsemusliikkeet</option>
-            <option value="Teatterit">Teatterit</option>
+            <option value="Elokuvateatterit">Cinemas</option>
+            <option value="Hostellit">Hotels</option>
+            <option value="Hotellit">Hostels</option>
+            <option value="Museot">Museums</option>
+            <option value="Ravitsemusliikkeet">Restaurants</option>
+            <option value="Teatterit">Theatres</option>
+			<option value="Kirjastot">Libraries</option>
         </select>
         </div>
 			
@@ -102,7 +104,7 @@
 		"Hostellit": "Hostels",
 		"Teatterit": "Theatres",
 		"Elokuvateatterit": "Cinemas",
-		"Apteekit": "Pharmacies"
+		"Kirjastot": "Libraries",
 	};
 		
 		function showStopServices(stop_id) {
@@ -280,6 +282,13 @@
                 this._div.setAttribute("onmouseenter", "abstract.show()");
                 this._div.setAttribute("onmouseleave", "abstract.hide()");
                 this.hide();
+				
+				this._div.style.setProperty("background-color", "rgba(247, 220, 110, 0.95)", "important");
+				this._div.style.border = "1px solid #ccc";
+				this._div.style.borderRadius = "6px";
+				this._div.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
+				this._div.style.padding = "6px";
+				
                 return this._div;
             };
             abstract.hide = function () {
@@ -290,8 +299,10 @@
 			abstract.show = function () {
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
-                this._div.innerHTML = 'This interactive web map shows how accessible the services are from the tramstops. <br> <b>You can choose from the dropdown menu on the right if you want to see services within 5-, 10-, or 15-minute walking distance from the chosen tramstop. The walking distances are calculated with 4 kilometers per hour speed. You can also choose if you want to see all services or just hotels or any other kind of services. By clicking any tramstop there will pop-up a list about services around the stop by your selected walking distance. The map will also show you in points where your selected services are. By clicking these points you can get more information about the service.</b> <br /><br />Data Citations: Service point data from Lounaistieto. Available at: https://www.avoindata.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet. Digiroads from Finnish Transport Infrastructure Agency. Available at: https://vayla.fi/vaylista/aineistot/digiroad/aineisto/rajapinnat. Tramway and its stops raitiotielinjaus.shp and raitiotielinjaus_pysäkit.shp from Turku city. Available at: https://www.avoindata.fi/data/fi/dataset/turun-raitiotiesuunnitelma. Background map © OpenStreetMap. Available at: https://www.openstreetmap.org. <br/>';
+                this._div.innerHTML = '<br> <b>This interactive web map shows how accessible the services are from the tramstops. You can choose from the dropdown menu on the right if you want to see services within 5-, 10-, or 15-minute walking distance from the chosen tramstop. The walking distances are calculated with 4 kilometers per hour speed. You can also choose if you want to see all services or just hotels or any other kind of services. By clicking any tramstop there will pop-up a list about services around the stop by your selected walking distance. The map will also show you in points where your selected services are. By clicking these points you can get more information about the service.</b> <br /><br />Data Citations: Service point data from Lounaistieto. Available at: https://www.avoindata.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet. Digiroads from Finnish Transport Infrastructure Agency. Available at: https://vayla.fi/vaylista/aineistot/digiroad/aineisto/rajapinnat. Tramway and its stops raitiotielinjaus.shp and raitiotielinjaus_pysäkit.shp from Turku city. Available at: https://www.avoindata.fi/data/fi/dataset/turun-raitiotiesuunnitelma. Background map © OpenStreetMap. Available at: https://www.openstreetmap.org. <br/>';
         }
+		
+		
         abstract.addTo(map);
 		abstract.show();
 
@@ -299,7 +310,7 @@
             abstract.hide();
         });
         var zoomControl = L.control.zoom({
-            position: 'topleft'
+            position: 'topright'
         }).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
@@ -317,6 +328,7 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
+		function zoomToFeature(e) {map.setView(e.latlng, 300);}
         function pop_15MIN_UUSI_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -356,7 +368,7 @@
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
         }
 
         function style_15MIN_UUSI_1_0() {
@@ -433,7 +445,7 @@
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
         }
 
         function style_10MIN_UUSI_2_0() {
@@ -511,7 +523,7 @@
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
         }
 
         function style_5MIN_UUSI_3_0() {
@@ -559,14 +571,14 @@
 			layer.on('popupopen', function(e) {
 				addClassToPopupIfMedia(content, e.popup);
 			});
-			layer.bindPopup(content, { maxHeight: 400 });
+			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
         }
 
         function style_Rautiotie_4_0() {
             return {
                 pane: 'pane_Rautiotie_4',
                 opacity: 1,
-                color: 'rgba(183,72,75,1.0)',
+                color: 'rgba(10,0,0,1.0)',
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -616,6 +628,7 @@
 			const id = feature.properties.stop_id;
 			const name = stopNames[id] || ("Stop " + id); // jos nimeä ei löydy, näytetään "Stop X"
 			layer.bindPopup(name);
+			layer.on('click', zoomToFeature);
 		}
 
         function style_PYSAKKI_5_0() {
@@ -630,7 +643,7 @@
                 weight: 2,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(207,8,185,1.0)',
+                fillColor: 'rgba(173,205,111,1.0)',
                 interactive: true,
             }
         }
@@ -671,20 +684,24 @@
         lay.addTo(map);
 		
 		
-		
-		
 		var title = new L.Control({position: 'bottomleft'});
-        title.onAdd = function (map) {
-           this._div = L.DomUtil.create('div', 'info');
-           this.update();
-           return this._div;
-       };
-       title.update = function () {
-           this._div.innerHTML = '<h2>Turku Tramway Service Area Map</h2><p>Select a tram stop to view nearby services</p>';
-       };
-       title.addTo(map);
-		
-        setBounds();
+title.onAdd = function (map) {
+   this._div = L.DomUtil.create('div');
+   this._div.style.backgroundColor = 'rgba(247, 220, 110, 0.95)';
+   this._div.style.border = '1px solid #ccc';
+   this._div.style.borderRadius = '6px';
+   this._div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.2)';
+   this._div.style.padding = '8px';
+   this._div.style.color = 'black';
+   this._div.style.fontWeight = 'bold';
+   this.update();
+   return this._div;
+};
+title.update = function () {
+   this._div.innerHTML = '<h2>Turku Tramway Service Area Map</h2><p>Select a tram stop to view nearby services</p>';
+};
+title.addTo(map);
+setBounds();
 		
 		
 		var lastSelectedStopId = null;
@@ -696,11 +713,11 @@
 
         // Palauttaa edellisen valitun pysäkin värin
         if (selectedStopLayer && selectedStopLayer !== layer) {
-            selectedStopLayer.setStyle({
-                color: 'rgba(35,35,35,1.0)',
-                fillColor: 'rgba(207,8,185,1.0)' // alkuperäinen väri
-            });
-        }
+			selectedStopLayer.setStyle({
+				color: 'rgba(35,35,35,1.0)',
+				fillColor: 'rgba(173,205,111,1.0)'
+			});
+		}
 
         // Vaihtaa klikatun pysäkin värin punaiseksi
         layer.setStyle({
@@ -729,8 +746,7 @@
     if (lastSelectedStopId !== null) {
         showStopServices(lastSelectedStopId);
     }
-});;
-		
+});;	
         </script>        
     </body>
 </html>
