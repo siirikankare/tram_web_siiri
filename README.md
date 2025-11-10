@@ -6,7 +6,7 @@ The inteactive web map is about the planned Turku tramway and the map is focusin
 
 Web site:
 
-The map is available at: https://wilma-p.github.io/tram_web/#13/60.4466/22.3050
+The map is available at: https://siirikankare.github.io/tram_web_siiri/#13/60.4466/22.3050
 
 Datasets:
 
@@ -18,6 +18,6 @@ The service point data: matkailu_ravintola_ja_kulttuuripalvelut.fid-252923a2_19a
 
 The digiroad data: digiroad (line) CRS: ETRS-TM35FIN. The data administrator is Väylävirasto. the dataset is available in https://vayla.fi/digiroad and it has been updated in 19.6.2025. Dataset is available in Open data via WMS and WFS interface. Licence: Creative Commons Attribution 4.0 International License. 
 
-Authors: Kari Hillgén, Siiri Kankare, Wilma Peippo & Veera Tuomola.
+Authors: Kari Hillgén, Siiri Kankare, Wilma Peippo & Veera Tuomola from University of Turku.
 
 The web map is made for course: Geospatial Data Management and Visualization (2025), Practise 3: Visualization of geospatial data. 
