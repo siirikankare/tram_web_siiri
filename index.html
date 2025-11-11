@@ -63,8 +63,8 @@
                         border-radius:6px; border:1px solid #ccc;">
             <option value="Kaikki">All services</option>
             <option value="Elokuvateatterit">Cinemas</option>
-            <option value="Hostellit">Hotels</option>
-            <option value="Hotellit">Hostels</option>
+            <option value="Hostellit">Hostels</option>
+            <option value="Hotellit">Hotels</option>
             <option value="Museot">Museums</option>
             <option value="Ravitsemusliikkeet">Restaurants</option>
             <option value="Teatterit">Theatres</option>
@@ -328,49 +328,54 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
-		function zoomToFeature(e) {map.setView(e.latlng, 300);}
+		function zoomToFeature(e) {map.setView(e.latlng, 400);}
+		
         function pop_15MIN_UUSI_1(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Service type</th>\
-                        <td class="visible-with-data" id="palvelukoh">' + (feature.properties['palvelukoh'] !== null ? autolinker.link(String(feature.properties['palvelukoh']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Services</th>\
-                        <td class="visible-with-data" id="palvelut">' + (feature.properties['palvelut'] !== null ? autolinker.link(String(feature.properties['palvelut']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Name</th>\
-                        <td class="visible-with-data" id="kohteen_ni">' + (feature.properties['kohteen_ni'] !== null ? autolinker.link(String(feature.properties['kohteen_ni']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Phone number</th>\
-                        <td class="visible-with-data" id="puhelinnum">' + (feature.properties['puhelinnum'] !== null ? autolinker.link(String(feature.properties['puhelinnum']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Addres</th>\
-                        <td class="visible-with-data" id="osoite">' + (feature.properties['osoite'] !== null ? autolinker.link(String(feature.properties['osoite']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Email</th>\
-                        <td class="visible-with-data" id="sahkoposti">' + (feature.properties['sahkoposti'] !== null ? autolinker.link(String(feature.properties['sahkoposti']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Website</th>\
-                        <td class="visible-with-data" id="verkkosivu">' + (feature.properties['verkkosivu'] !== null ? autolinker.link(String(feature.properties['verkkosivu']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Opening hours</th>\
-                        <td class="visible-with-data" id="aukioloaja">' + (feature.properties['aukioloaja'] !== null ? autolinker.link(String(feature.properties['aukioloaja']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
-        }
+    var englishType = serviceTranslations[feature.properties['palvelukoh']] || feature.properties['palvelukoh'];
+    
+    var popupContent = '<table>\
+        <tr>\
+            <th scope="row">Service type</th>\
+            <td class="visible-with-data" id="palvelukoh">' + (englishType || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Services</th>\
+            <td class="visible-with-data" id="palvelut">' + (feature.properties['palvelut'] ? autolinker.link(String(feature.properties['palvelut'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Name</th>\
+            <td class="visible-with-data" id="kohteen_ni">' + (feature.properties['kohteen_ni'] ? autolinker.link(String(feature.properties['kohteen_ni'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Phone number</th>\
+            <td class="visible-with-data" id="puhelinnum">' + (feature.properties['puhelinnum'] ? autolinker.link(String(feature.properties['puhelinnum'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Address</th>\
+            <td class="visible-with-data" id="osoite">' + (feature.properties['osoite'] ? autolinker.link(String(feature.properties['osoite'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Email</th>\
+            <td class="visible-with-data" id="sahkoposti">' + (feature.properties['sahkoposti'] ? autolinker.link(String(feature.properties['sahkoposti'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Website</th>\
+            <td class="visible-with-data" id="verkkosivu">' + (feature.properties['verkkosivu'] ? autolinker.link(String(feature.properties['verkkosivu'])) : '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Opening hours</th>\
+            <td class="visible-with-data" id="aukioloaja">' + (feature.properties['aukioloaja'] ? autolinker.link(String(feature.properties['aukioloaja'])) : '') + '</td>\
+        </tr>\
+    </table>';
 
+    var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+
+    layer.on('popupopen', function(e) {
+        addClassToPopupIfMedia(content, e.popup);
+    });
+
+    layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
+}
         function style_15MIN_UUSI_1_0() {
             return {
                 pane: 'pane_15MIN_UUSI_1',
@@ -407,46 +412,52 @@
         });
         bounds_group.addLayer(layer_15MIN_UUSI_1);
         function pop_10MIN_UUSI_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Service type</th>\
-                        <td class="visible-with-data" id="palvelukoh">' + (feature.properties['palvelukoh'] !== null ? autolinker.link(String(feature.properties['palvelukoh']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Services</th>\
-                        <td class="visible-with-data" id="palvelut">' + (feature.properties['palvelut'] !== null ? autolinker.link(String(feature.properties['palvelut']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Name</th>\
-                        <td class="visible-with-data" id="kohteen_ni">' + (feature.properties['kohteen_ni'] !== null ? autolinker.link(String(feature.properties['kohteen_ni']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Phone number</th>\
-                        <td class="visible-with-data" id="puhelinnum">' + (feature.properties['puhelinnum'] !== null ? autolinker.link(String(feature.properties['puhelinnum']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Addres</th>\
-                        <td class="visible-with-data" id="osoite">' + (feature.properties['osoite'] !== null ? autolinker.link(String(feature.properties['osoite']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Email</th>\
-                        <td class="visible-with-data" id="sahkoposti">' + (feature.properties['sahkoposti'] !== null ? autolinker.link(String(feature.properties['sahkoposti']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Website</th>\
-                        <td class="visible-with-data" id="verkkosivu">' + (feature.properties['verkkosivu'] !== null ? autolinker.link(String(feature.properties['verkkosivu']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Opening hours</th>\
-                        <td class="visible-with-data" id="aukioloaja">' + (feature.properties['aukioloaja'] !== null ? autolinker.link(String(feature.properties['aukioloaja']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
-        }
+    var englishType = serviceTranslations[feature.properties['palvelukoh']] || feature.properties['palvelukoh'];
+
+    var popupContent = '<table>\
+        <tr>\
+            <th scope="row">Service type</th>\
+            <td class="visible-with-data" id="palvelukoh">' + (englishType || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Services</th>\
+            <td class="visible-with-data" id="palvelut">' + (feature.properties['palvelut'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Name</th>\
+            <td class="visible-with-data" id="kohteen_ni">' + (feature.properties['kohteen_ni'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Phone number</th>\
+            <td class="visible-with-data" id="puhelinnum">' + (feature.properties['puhelinnum'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Address</th>\
+            <td class="visible-with-data" id="osoite">' + (feature.properties['osoite'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Email</th>\
+            <td class="visible-with-data" id="sahkoposti">' + (feature.properties['sahkoposti'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Website</th>\
+            <td class="visible-with-data" id="verkkosivu">' + (feature.properties['verkkosivu'] || '') + '</td>\
+        </tr>\
+        <tr>\
+            <th scope="row">Opening hours</th>\
+            <td class="visible-with-data" id="aukioloaja">' + (feature.properties['aukioloaja'] || '') + '</td>\
+        </tr>\
+    </table>';
+
+    // Poistaa null-arvot ja tyhjät
+    var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+
+    layer.on('popupopen', function(e) {
+        addClassToPopupIfMedia(content, e.popup);
+    });
+
+    layer.bindPopup(content, { maxWidth: 500, maxHeight: 200 });
+}
 
         function style_10MIN_UUSI_2_0() {
             return {
