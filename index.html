@@ -328,7 +328,9 @@
         });
         layer_OpenStreetMap_0;
         map.addLayer(layer_OpenStreetMap_0);
-		function zoomToFeature(e) {map.setView(e.latlng, 400);}
+		function zoomToFeature(e) {
+    map.flyTo(e.latlng, 16, { duration: 1.5 });
+}
 		
         function pop_15MIN_UUSI_1(feature, layer) {
     var englishType = serviceTranslations[feature.properties['palvelukoh']] || feature.properties['palvelukoh'];
