@@ -70,6 +70,18 @@
             <option value="Teatterit">Theatres</option>
 			<option value="Kirjastot">Libraries</option>
         </select>
+		
+		    <!-- Taustakartan valinta -->
+    <label for="basemap-select" style="display:block; font-weight:bold; margin-bottom:4px;">
+        Basemap:
+    </label>
+    <select id="basemap-select" style="width:100%; font-size:15px; padding:6px 8px;
+                                       border-radius:6px; border:1px solid #ccc;">
+        <option value="OpenStreetMap">OpenStreetMap</option>
+        <option value="CARTO Light">CARTO Light</option>
+        <!-- voit lisätä myös CARTO Dark jos haluat -->
+    </select>
+		
         </div>
 			
 		
@@ -299,7 +311,7 @@
 			abstract.show = function () {
                 this._div.classList.remove("abstract");
                 this._div.classList.add("abstractUncollapsed");
-                this._div.innerHTML = '<br> <b>This interactive web map shows how accessible the services are from the tramstops. You can choose from the dropdown menu on the right if you want to see services within 5-, 10-, or 15-minute walking distance from the chosen tramstop. The walking distances are calculated with 4 kilometers per hour speed. You can also choose if you want to see all services or just hotels or any other kind of services. By clicking any tramstop there will pop-up a list about services around the stop by your selected walking distance. The map will also show you in points where your selected services are. By clicking these points you can get more information about the service.</b> <br /><br />Data Citations: Service point data from Lounaistieto. Available at: https://www.avoindata.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet. Digiroads from Finnish Transport Infrastructure Agency. Available at: https://vayla.fi/vaylista/aineistot/digiroad/aineisto/rajapinnat. Tramway and its stops raitiotielinjaus.shp and raitiotielinjaus_pysäkit.shp from Turku city. Available at: https://www.avoindata.fi/data/fi/dataset/turun-raitiotiesuunnitelma. Background map © OpenStreetMap. Available at: https://www.openstreetmap.org. <br/>';
+                this._div.innerHTML = '<br> <b>This interactive web map shows how accessible the services are from the tramstops. You can choose from the dropdown menu on the right if you want to see services within 5-, 10-, or 15-minute walking distance from the chosen tramstop. The walking distances are calculated with 4 kilometers per hour speed. You can also choose if you want to see all services or just hotels or any other kind of services. By clicking any tramstop there will pop-up a list about services around the stop by your selected walking distance. The map will also show you in points where your selected services are. By clicking these points you can get more information about the service.</b> <br /><br />Data Citations: Service point data from Lounaistieto. Available at: https://www.avoindata.fi/data/fi/dataset/varsinais-suomen-ja-satakunnan-palvelupisteet. Digiroads from Finnish Transport Infrastructure Agency. Available at: https://vayla.fi/vaylista/aineistot/digiroad/aineisto/rajapinnat. Tramway and its stops raitiotielinjaus.shp and raitiotielinjaus_pysäkit.shp from Turku city. Available at: https://www.avoindata.fi/data/fi/dataset/turun-raitiotiesuunnitelma. Background map 1 © OpenStreetMap. Available at: https://www.openstreetmap.org. Background map 2 © CARTO. Available at: carto.com/basemaps.  <br/>';
         }
 		
 		
@@ -698,9 +710,7 @@ layer_OpenStreetMap_0.addTo(map);
         map.addLayer(layer_PYSAKKI_5);
         var overlaysTree = [
             {label: '<img src="legend/PYSAKKI_5.png" /> Tram stops', layer: layer_PYSAKKI_5},
-            {label: '<img src="legend/Rautiotie_4.png" /> Tram line', layer: layer_Rautiotie_4},
-            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },
-			{label: "CARTO Light", layer: layer_CARTO_0, radioGroup: 'bm' }]
+            {label: '<img src="legend/Rautiotie_4.png" /> Tram line', layer: layer_Rautiotie_4}]
         var lay = L.control.layers.tree(null, overlaysTree,{
             //namedToggle: true,
             //selectorBack: false,
@@ -763,6 +773,23 @@ setBounds();
         showStopServices(stop_id);
 		});
 		});
+		
+		
+		document.getElementById("basemap-select").addEventListener("change", function(e) {
+    var selected = e.target.value;
+
+    // Poista kaikki pohjakartat
+    map.removeLayer(layer_OpenStreetMap_0);
+    map.removeLayer(layer_CARTO_0);
+    // map.removeLayer(layer_CARTO_dark); // jos lisäät uuden
+
+    // Lisää valittu pohjakartta
+    if (selected === "OpenStreetMap") {
+        map.addLayer(layer_OpenStreetMap_0);
+    } else if (selected === "CARTO Light") {
+        map.addLayer(layer_CARTO_0);
+    } // else if (selected === "CARTO Dark") { ... }
+});
 
 // --- Pudotusvalikon muutos päivittää näkyvät palvelut ---
 		document.getElementById("distance-select").addEventListener("change", function(e) {
