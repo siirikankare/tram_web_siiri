@@ -196,8 +196,5 @@
         .leaflet-control-layers-expanded .leaflet-control-layers-toggle {
             display: none;
         }
-	.leaflet-interactive:active,
-	.leaflet-interactive.leaflet-clickable:focus {
-   	 fill: rgba(173,205,111,1.0) !important;
-   	 stroke: rgba(173,205,111,1.0) !important;
-	}
+
+
